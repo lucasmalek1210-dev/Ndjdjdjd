@@ -1,5 +1,7 @@
 # Elton John Interactive Discography
 
+All 34 of Elton John's studio albums (1969–2025), including joint albums with Leon Russell and Brandi Carlile, with tracklists and songwriter credits checked against Wikipedia.
+
 A static, no-build web page: open `index.html` in a browser or upload this folder to any host (GitHub Pages, Netlify, etc.).
 
 - **Hover** an album: the cover tilts and the record slides out.

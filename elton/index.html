@@ -18,6 +18,13 @@
 
     <div class="controls">
       <input id="search" type="search" placeholder="Search albums or songs…" aria-label="Search albums or songs" autocomplete="off" />
+      <div class="kinds" role="group" aria-label="Filter by album type">
+        <button class="chip active" data-kind="all">Everything</button>
+        <button class="chip" data-kind="studio">Studio</button>
+        <button class="chip" data-kind="soundtrack">Soundtracks</button>
+        <button class="chip" data-kind="live">Live</button>
+        <button class="chip" data-kind="compilation">Greatest Hits</button>
+      </div>
       <div class="eras" role="group" aria-label="Filter by decade">
         <button class="chip active" data-era="all">All</button>
         <button class="chip" data-era="1960">'60s</button>
@@ -33,7 +40,7 @@
 
   <main>
     <p id="count" class="count" aria-live="polite"></p>
-    <section id="grid" class="grid" aria-label="Albums"></section>
+    <div id="grid" class="shelves"></div>
   </main>
 
   <!-- Album detail -->
@@ -58,10 +65,11 @@
   </div>
 
   <footer>
-    Fan-made reference. Covers Elton's studio albums, including his joint albums with other artists. Album art is generated.
+    Fan-made reference. Covers Elton's studio albums, soundtracks, live albums and greatest-hits collections. Album art is generated.
   </footer>
 
   <script src="data.js"></script>
+  <script src="data-extras.js"></script>
   <script src="app.js"></script>
 </body>
 </html>

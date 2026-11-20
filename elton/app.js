@@ -12,6 +12,9 @@
   let current = null; // current album
   let lastFocus = null;
 
+  // Keep albums in release order, even if data.js lists them out of order
+  ALBUMS.sort((x, y) => x.year - y.year);
+
   // Normalise tracks into objects
   ALBUMS.forEach((a) => {
     a.tracks = a.tracks.map((t, i) => {
@@ -31,7 +34,7 @@
     }
     return `<div class="cover gen" style="--c1:${c1};--c2:${c2};--c3:${c3}" aria-hidden="true">
       <span class="g-year">${a.year}</span>
-      <span class="g-artist">Elton John</span>
+      <span class="g-artist">${esc(a.artist || "Elton John")}</span>
       <span class="g-title">${esc(a.title)}</span>
     </div>`;
   }
@@ -45,7 +48,7 @@
     const list = ALBUMS.filter((a) => {
       if (era !== "all") {
         const d = Math.floor(a.year / 10) * 10;
-        if (era === "2000" ? d < 2000 : d !== +era) return false;
+        if (d !== +era) return false;
       }
       if (!query) return true;
       return norm(a.title).includes(query) || matchingSongs(a).length;
@@ -80,7 +83,7 @@
 
     $("#panelCover").outerHTML = coverHTML(a).replace('class="cover', 'id="panelCover" class="cover big');
     $("#albumTitle").textContent = a.title;
-    $("#albumMeta").textContent = `${a.year} · Produced by ${a.producer}`;
+    $("#albumMeta").textContent = `${a.artist ? a.artist + " · " : ""}${a.year} · Produced by ${a.producer}`;
     $("#albumAbout").textContent = a.about;
 
     tracksEl.innerHTML = a.tracks
@@ -140,7 +143,7 @@
 
   function albumContext(a) {
     const d = Math.floor(a.year / 10) * 10;
-    return `Recorded during Elton's ${d === 1960 ? "earliest days" : d + "s era"}.`;
+    return `From Elton's ${d === 1960 ? "earliest days" : d + "s era"}.`;
   }
 
   function closeAlbum() {
